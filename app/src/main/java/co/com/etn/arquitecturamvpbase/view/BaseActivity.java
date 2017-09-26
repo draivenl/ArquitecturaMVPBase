@@ -39,6 +39,11 @@ public class BaseActivity<T extends BasePresenter> extends AppCompatActivity imp
         progressDialog.dismiss();
     }
 
+    @Override
+    public void closeActivity() {
+        finish();
+    }
+
     public IValidateInternet getValidateInternet() {
         return validateInternet;
     }

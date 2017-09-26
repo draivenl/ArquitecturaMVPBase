@@ -7,4 +7,7 @@
     <string name="loading_message">Cargando...</string>
     <string name="product_creat">CREAR</string>
     <string name="new_product_ok">Producto Creado...</string>
+    <string name="validate_internet">Error de conexión</string>
+    <string name="success_deleted">Borrado Exitoso</string>
+    <string name="error_deleted">Error Borrando</string>
 </resources>

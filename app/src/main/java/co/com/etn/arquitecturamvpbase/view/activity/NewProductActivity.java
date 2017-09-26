@@ -80,8 +80,7 @@ public class NewProductActivity extends BaseActivity<NewProductPresenter> implem
             public void run() {
                 try {
                     Toast.makeText(NewProductActivity.this, getResources().getString(R.string.new_product_ok), Toast.LENGTH_SHORT).show();
-//                    super.finalize();
-                    NewProductActivity.this.finalize();
+                    finish();
                 } catch (Throwable throwable) {
                     throwable.printStackTrace();
                 }

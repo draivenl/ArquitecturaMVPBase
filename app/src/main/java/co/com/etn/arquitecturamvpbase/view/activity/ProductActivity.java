@@ -83,6 +83,6 @@ public class ProductActivity extends BaseActivity<ProductPresenter> implements I
     @Override
     protected void onResume() {
         super.onResume();
-        getValidateInternet();
+        getPresenter().validateInternetProduct();
     }
 }
