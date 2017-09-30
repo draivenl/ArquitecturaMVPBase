@@ -150,15 +150,19 @@ public class DetailActivity extends BaseActivity<DetailProductPresenter> impleme
     public void setEditable(boolean editable) {
         if (editable) {
             productDetailEditName.setFocusable(true);
+            productDetailEditName.setFocusableInTouchMode(true);
             productDetailEditName.setBackground(backgroundOri);
 
             productDetailEditDescription.setFocusable(true);
+            productDetailEditDescription.setFocusableInTouchMode(true);
             productDetailEditDescription.setBackground(backgroundOri);
 
             productDetailEditQuantity.setFocusable(true);
+            productDetailEditQuantity.setFocusableInTouchMode(true);
             productDetailEditQuantity.setBackground(backgroundOri);
 
             productDetailEditPrice.setFocusable(true);
+            productDetailEditPrice.setFocusableInTouchMode(true);
             productDetailEditPrice.setBackground(backgroundOri);
 
             fabUpdateProduct.setVisibility(View.VISIBLE);
