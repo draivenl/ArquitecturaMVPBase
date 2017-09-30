@@ -1,11 +1,9 @@
 package co.com.etn.arquitecturamvpbase.repository;
 
-import android.util.Log;
-
 import java.util.ArrayList;
 
 import co.com.etn.arquitecturamvpbase.helper.ServicesFactory;
-import co.com.etn.arquitecturamvpbase.model.DeleteProductResponse;
+import co.com.etn.arquitecturamvpbase.model.ProductResponse;
 import co.com.etn.arquitecturamvpbase.model.Product;
 import co.com.etn.arquitecturamvpbase.service.IServices;
 import retrofit.RetrofitError;
@@ -37,10 +35,23 @@ public class ProductRepository  implements IProductsRepository {
     }
 
     @Override
-    public DeleteProductResponse deleteProduct(String id) throws RetrofitError {
+    public ProductResponse deleteProduct(String id) throws RepositoryError {
 //        Log.d(TAG, "deleteProduct");
-        DeleteProductResponse deleteProductResponse = services.deleteProductResponse(id);
-        return deleteProductResponse;
+        try {
+            return services.deleteProductResponse(id);
+
+        } catch (RetrofitError retrofitError) {
+            throw MapperError.convertRetrofitErrorToRepositoryError(retrofitError);
+        }
+    }
+
+    @Override
+    public ProductResponse updateProduct(String id, Product product) throws RepositoryError {
+        try {
+            return services.updateProductResponse(id, product);
+        } catch (RetrofitError retrofitError) {
+            throw MapperError.convertRetrofitErrorToRepositoryError(retrofitError);
+        }
     }
 
 

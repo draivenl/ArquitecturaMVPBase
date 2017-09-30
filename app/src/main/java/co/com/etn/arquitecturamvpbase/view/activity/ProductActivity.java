@@ -1,5 +1,6 @@
 package co.com.etn.arquitecturamvpbase.view.activity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import co.com.etn.arquitecturamvpbase.helper.Constants;
@@ -36,7 +37,7 @@ public class ProductActivity extends BaseActivity<ProductPresenter> implements I
 
         createProgressDialog();
 
-        getPresenter().validateInternetProduct();
+        getPresenter().getListProduct();
         productList = (ListView) findViewById(R.id.product_listView);
     }
 
@@ -59,6 +60,36 @@ public class ProductActivity extends BaseActivity<ProductPresenter> implements I
         Toast.makeText(this, "Not Connected", Toast.LENGTH_SHORT).show();
     }
 
+    @Override
+    public void showAlertDialogInternet(final int error, final int validate_internet) {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                getShowAlertDialog().showAlertDialog(error, validate_internet, false, R.string.accept, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        getPresenter().getListProduct();
+                    }
+                }, R.string.cancel, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        finish();
+                    }
+                });
+            }
+        });
+
+
+        // TODO: showAlertDialog
+    }
+
+    @Override
+    public void showAlertError(int error, int error_retrofit) {
+
+
+        // TODO: showAlertError
+    }
+
     public void callAdapter(final ArrayList<Product> productArrayList) {
         productAdapter = new ProductAdapter(this, R.id.product_listView, productArrayList);
         productList.setAdapter(productAdapter);
@@ -67,8 +98,19 @@ public class ProductActivity extends BaseActivity<ProductPresenter> implements I
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
                 Intent intent = new Intent(ProductActivity.this, DetailActivity.class);
                 intent.putExtra(Constants.ITEM_PRODUCT, productArrayList.get(position));
+                intent.putExtra(Constants.ITEM_EDIT, false);
                 startActivity(intent);
 
+            }
+        });
+        productList.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int position, long l) {
+                Intent intent = new Intent(ProductActivity.this, DetailActivity.class);
+                intent.putExtra(Constants.ITEM_PRODUCT, productArrayList.get(position));
+                intent.putExtra(Constants.ITEM_EDIT, true);
+                startActivity(intent);
+                return false;
             }
         });
     }
@@ -83,6 +125,6 @@ public class ProductActivity extends BaseActivity<ProductPresenter> implements I
     @Override
     protected void onResume() {
         super.onResume();
-        getPresenter().validateInternetProduct();
+        getPresenter().getListProduct();
     }
 }

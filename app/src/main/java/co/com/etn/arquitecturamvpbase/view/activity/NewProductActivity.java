@@ -82,7 +82,7 @@ public class NewProductActivity extends BaseActivity<NewProductPresenter> implem
                     Toast.makeText(NewProductActivity.this, getResources().getString(R.string.new_product_ok), Toast.LENGTH_SHORT).show();
                     finish();
                 } catch (Throwable throwable) {
-                    throwable.printStackTrace();
+                    Toast.makeText(NewProductActivity.this, getResources().getString(R.string.error) + throwable.getMessage(), Toast.LENGTH_SHORT).show();
                 }
             }
         });

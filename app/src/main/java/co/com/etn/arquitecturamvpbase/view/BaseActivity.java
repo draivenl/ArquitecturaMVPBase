@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
 import co.com.etn.arquitecturamvpbase.helper.IValidateInternet;
+import co.com.etn.arquitecturamvpbase.helper.ShowAlertDialog;
 import co.com.etn.arquitecturamvpbase.helper.ValidateInternet;
 import co.com.etn.arquitecturamvpbase.presenter.BasePresenter;
 
@@ -19,12 +20,19 @@ public class BaseActivity<T extends BasePresenter> extends AppCompatActivity imp
 
     private T presenter;
 
+    private ShowAlertDialog  showAlertDialog;
+
 
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         validateInternet = new ValidateInternet(BaseActivity.this);
+        this.showAlertDialog = new ShowAlertDialog(this);
+    }
+
+    public ShowAlertDialog getShowAlertDialog() {
+        return showAlertDialog;
     }
 
     @Override

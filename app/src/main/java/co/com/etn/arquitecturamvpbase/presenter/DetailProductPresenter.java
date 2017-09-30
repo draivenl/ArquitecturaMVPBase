@@ -1,12 +1,11 @@
 package co.com.etn.arquitecturamvpbase.presenter;
 
-import android.util.Log;
-
 import co.com.etn.arquitecturamvpbase.R;
-import co.com.etn.arquitecturamvpbase.model.DeleteProductResponse;
+import co.com.etn.arquitecturamvpbase.model.Product;
+import co.com.etn.arquitecturamvpbase.model.ProductResponse;
 import co.com.etn.arquitecturamvpbase.repository.IProductsRepository;
+import co.com.etn.arquitecturamvpbase.repository.RepositoryError;
 import co.com.etn.arquitecturamvpbase.view.activity.IDetailProductView;
-import retrofit.RetrofitError;
 
 /**
  * Created by draiven on 9/23/17.
@@ -45,19 +44,52 @@ public class DetailProductPresenter extends BasePresenter<IDetailProductView> {
 
     public void deleteProductRepository(String id) {
         try {
-            DeleteProductResponse deleteProductResponse = productsRepository.deleteProduct(id);
+            ProductResponse productResponse = productsRepository.deleteProduct(id);
 
-            if (deleteProductResponse.isStatus()) {
+            if (productResponse.isStatus()) {
 //                Log.d(TAG, "Eliminado el producto: " + id);
                 getView().showToast(R.string.success_deleted);
                 getView().closeActivity();
             } else {
                 getView().showAlertDialogError(R.string.error_deleted);
             }
-        } catch (RetrofitError retrofitError) {
-            //TODO: manejar error
+        } catch (RepositoryError repositoryError) {
+            getView().showToast(repositoryError.getMessage());
         }
 
 
+    }
+
+    public void updateProduct(String id, Product product) {
+        if (getValidateInternet().isConnected()){
+            createThreadUpdateProduct(id, product);
+        } else {
+            getView().showAlertDialog(R.string.validate_internet);
+        }
+    }
+
+    public void createThreadUpdateProduct(final String id, final Product product) {
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                updateProductRepository(id, product);
+            }
+        });
+        thread.start();
+    }
+
+    public void updateProductRepository(String id, Product product) {
+        try {
+            ProductResponse productResponse = productsRepository.updateProduct(id, product);
+
+            if (productResponse.isStatus()) {
+                getView().showToast(R.string.success_updated);
+                getView().closeActivity();
+            } else {
+                getView().showAlertDialogError(R.string.error_updated);
+            }
+        } catch (RepositoryError repositoryError) {
+            getView().showToast(repositoryError.getMessage());
+        }
     }
 }

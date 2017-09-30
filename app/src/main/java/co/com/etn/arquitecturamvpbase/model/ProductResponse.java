@@ -7,7 +7,7 @@ import com.google.gson.annotations.SerializedName;
  * Created by draiven on 9/23/17.
  */
 
-public class DeleteProductResponse {
+public class ProductResponse {
 
     @SerializedName("status")
     @Expose

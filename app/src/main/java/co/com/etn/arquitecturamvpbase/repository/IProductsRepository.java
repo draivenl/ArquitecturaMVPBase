@@ -2,7 +2,7 @@ package co.com.etn.arquitecturamvpbase.repository;
 
 import java.util.ArrayList;
 
-import co.com.etn.arquitecturamvpbase.model.DeleteProductResponse;
+import co.com.etn.arquitecturamvpbase.model.ProductResponse;
 import co.com.etn.arquitecturamvpbase.model.Product;
 import retrofit.RetrofitError;
 
@@ -15,5 +15,7 @@ public interface IProductsRepository {
     public ArrayList<Product> getProductList()  throws RetrofitError;
     public Product addProduct(Product product)  throws RetrofitError;
 
-    DeleteProductResponse deleteProduct(String id);
+    ProductResponse deleteProduct(String id) throws RepositoryError;
+
+    ProductResponse updateProduct(String id, Product product) throws RepositoryError;
 }

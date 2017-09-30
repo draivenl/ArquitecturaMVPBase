@@ -10,4 +10,10 @@
     <string name="validate_internet">Error de conexión</string>
     <string name="success_deleted">Borrado Exitoso</string>
     <string name="error_deleted">Error Borrando</string>
+    <string name="error">ERROR!!!</string>
+    <string name="error_retrofit">ERROR RETROFIT</string>
+    <string name="accept">Aceptar</string>
+    <string name="cancel">Cancelar</string>
+    <string name="success_updated">Actualizacion Exitosa</string>
+    <string name="error_updated">Error al actualizar</string>
 </resources>

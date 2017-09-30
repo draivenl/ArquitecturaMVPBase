@@ -23,12 +23,12 @@ public class ProductPresenter extends BasePresenter<IProductView> {
         this.productRepository = new ProductRepository();
     }
 
-    public void validateInternetProduct() {
+    public void getListProduct() {
         if (getValidateInternet().isConnected()) {
             createThreadProduct();
         } else {
-            getView().showNotConnected();
-            // TODO: Implementacion alert
+//            getView().showNotConnected();
+            getView().showAlertDialogInternet(R.string.error, R.string.validate_internet);
         }
     }
 
@@ -52,7 +52,7 @@ public class ProductPresenter extends BasePresenter<IProductView> {
 
 
         } catch (RetrofitError retrofitError){
-            // TODO: Mostrar RetrofitError
+            getView().showAlertError(R.string.error, R.string.error_retrofit);
         } finally {
             getView().hideProgress();
         }

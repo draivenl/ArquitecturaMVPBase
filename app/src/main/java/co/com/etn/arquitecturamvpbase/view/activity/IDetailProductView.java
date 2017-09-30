@@ -11,5 +11,7 @@ public interface IDetailProductView extends IBaseView {
 
     void showToast(int success_deleted);
 
+    void showToast(String msg);
+
     void showAlertDialogError(int error_deleted);
 }
