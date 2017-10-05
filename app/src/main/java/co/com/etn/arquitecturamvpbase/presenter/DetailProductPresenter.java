@@ -90,6 +90,7 @@ public class DetailProductPresenter extends BasePresenter<IDetailProductView> {
             }
         } catch (RepositoryError repositoryError) {
             getView().showToast(repositoryError.getMessage());
+            repositoryError.printStackTrace();
         }
     }
 }

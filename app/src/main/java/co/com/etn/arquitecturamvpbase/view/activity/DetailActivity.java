@@ -1,5 +1,6 @@
 package co.com.etn.arquitecturamvpbase.view.activity;
 
+import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -98,16 +99,7 @@ public class DetailActivity extends BaseActivity<DetailProductPresenter> impleme
     }
 
 
-    @Override
-    public void showAlertDialog(int validate_internet) {
-        // TODO: Implementar
-    }
 
-    @Override
-    public void showToast(int id) {
-        showToast(getResources().getString(id));
-
-    }
 
     @Override
     public void showToast(final String msg) {
@@ -122,8 +114,34 @@ public class DetailActivity extends BaseActivity<DetailProductPresenter> impleme
     }
 
     @Override
-    public void showAlertDialogError(int error_deleted) {
-        // TODO: mostrar
+    public void showAlertDialogError(final int errorResId) {
+        getShowAlertDialog().showAlertDialog(R.string.error, errorResId, true,
+                R.string.accept, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                if(errorResId == R.string.error_deleted) {
+                    getPresenter().deleteProduct(product.getId());
+                } else if(errorResId == R.string.error_updated) {
+                    getPresenter().updateProduct(product.getId(), product);
+                }
+
+            }
+        }, R.string.cancel, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                finish();
+            }
+        });
+    }
+
+    @Override
+    public void showAlertDialog(int resId) {
+        getShowAlertDialog().showAlertDialog(R.string.alert, resId, true, R.string.accept, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+
+            }
+        });
     }
 
     public void deleteProduct(View view) {

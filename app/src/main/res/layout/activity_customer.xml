@@ -1,29 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    >
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="co.com.etn.arquitecturamvpbase.view.activity.CustomerActivity">
+
 
     <ListView
-        android:id="@+id/product_listView"
+        android:id="@+id/customer_listView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:listitem="@layout/product_item"
+        tools:listitem="@layout/customer_item"
+        android:layout_margin="10dp"
         >
 
     </ListView>
 
     <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fabAddProduct"
+        android:id="@+id/fabAddCustomer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
-        app:srcCompat="@drawable/ic_add"
-        android:onClick="launchNewProductActivity"
+        app:srcCompat="@drawable/ic_add_customer"
+        android:onClick="launchNewCustomerActivity"
         android:layout_margin="@dimen/product_new_add_margin"
         />
-
 
 </android.support.design.widget.CoordinatorLayout>

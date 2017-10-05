@@ -2,6 +2,7 @@ package co.com.etn.arquitecturamvpbase.service;
 
 import java.util.ArrayList;
 
+import co.com.etn.arquitecturamvpbase.model.Customer;
 import co.com.etn.arquitecturamvpbase.model.ProductResponse;
 import co.com.etn.arquitecturamvpbase.model.Product;
 import retrofit.http.Body;
@@ -29,5 +30,10 @@ public interface IServices {
     @PUT("/products/{id}")
     ProductResponse updateProductResponse(@Path("id") String id, @Body Product product);
 
+    @POST("/customers")
+    Customer addCustomer(@Body Customer customer);
+
+    @GET("/customers")
+    ArrayList<Customer> getCustomersList();
 
 }

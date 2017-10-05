@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="co.com.etn.arquitecturamvpbase.view.activity.MainActivity"
+
+
+    >
+
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+
+        >
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/coffee_shop_lead"
+
+            android:scaleX="2"
+            android:scaleY="1"
+            />
+
+
+    </FrameLayout>
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="10dp"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/main_tags_height"
+        android:background="@color/backgroundTransparent"
+        android:orientation="vertical"
+        android:padding="@dimen/main_tags_margin"
+        android:layout_marginTop="@dimen/main_tags_margin"
+        android:onClick="launchProductsActivity"
+
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/main_product_title"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+            android:textColor="@android:color/white"
+
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/main_tags_height"
+
+        android:background="@color/backgroundTransparent"
+        android:orientation="vertical"
+        android:padding="@dimen/main_tags_margin"
+        android:layout_marginTop="@dimen/main_tags_margin"
+        android:onClick="launchCustomersActivity"
+
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/main_customers_title"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+            android:textColor="@android:color/white"
+
+            />
+
+    </LinearLayout>
+
+
+
+</LinearLayout>
+
+
+
+</android.support.design.widget.CoordinatorLayout>

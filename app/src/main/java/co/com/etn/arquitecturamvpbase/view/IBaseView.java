@@ -10,4 +10,9 @@ public interface IBaseView {
     void hideProgress();
     void closeActivity();
 
+
+
+    void showToast(String message);
+    void showToast(int resId);
+
 }

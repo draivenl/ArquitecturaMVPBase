@@ -1,5 +1,7 @@
 package co.com.etn.arquitecturamvpbase.repository;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 
 import co.com.etn.arquitecturamvpbase.helper.ServicesFactory;
@@ -24,6 +26,7 @@ public class ProductRepository  implements IProductsRepository {
 
     @Override
     public ArrayList<Product> getProductList()  throws RetrofitError{
+        Log.d(TAG, "getProductList()");
             ArrayList<Product> products = services.getProductList();
             return products;
     }

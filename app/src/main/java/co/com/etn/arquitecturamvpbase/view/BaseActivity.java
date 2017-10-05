@@ -1,10 +1,13 @@
 package co.com.etn.arquitecturamvpbase.view;
 
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.Toast;
 
+import co.com.etn.arquitecturamvpbase.R;
 import co.com.etn.arquitecturamvpbase.helper.IValidateInternet;
 import co.com.etn.arquitecturamvpbase.helper.ShowAlertDialog;
 import co.com.etn.arquitecturamvpbase.helper.ValidateInternet;
@@ -51,6 +54,24 @@ public class BaseActivity<T extends BasePresenter> extends AppCompatActivity imp
     public void closeActivity() {
         finish();
     }
+
+    @Override
+    public void showToast(final String message) {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                Toast.makeText(BaseActivity.this, message, Toast.LENGTH_SHORT).show();
+
+            }
+        });
+    }
+
+    @Override
+    public void showToast(int resId) {
+        showToast(getResources().getString(resId));
+    }
+
+
 
     public IValidateInternet getValidateInternet() {
         return validateInternet;

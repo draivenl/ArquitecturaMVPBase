@@ -28,7 +28,7 @@ import static org.mockito.Mockito.when;
 
 
 @RunWith(MockitoJUnitRunner.class)
-public class DetailPrenenterTest {
+public class DetailPresenterTest {
 
     @Mock
     IValidateInternet validateInternet;
