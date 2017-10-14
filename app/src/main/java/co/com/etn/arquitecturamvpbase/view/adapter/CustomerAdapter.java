@@ -19,7 +19,7 @@ import co.com.etn.arquitecturamvpbase.view.activity.CustomerActivity;
  * Created by draiven on 10/5/17.
  */
 
-public class CustomerAdapter extends ArrayAdapter<Customer> {
+public class    CustomerAdapter extends ArrayAdapter<Customer> {
     private ArrayList<Customer> customers;
     private Activity context;
     private Customer customer;

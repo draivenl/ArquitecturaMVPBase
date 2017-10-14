@@ -11,4 +11,6 @@ public interface IDetailProductView extends IBaseView {
     void showAlertDialogError(int resId);
 
     void showAlertDialog(int resId);
+
+    void showValidateInternetWarningDialog(int process);
 }

@@ -15,4 +15,12 @@ public class Constants {
     public static final int UNAUTHORIZED_ERROR_CODE = 401;
     public static final int NOT_FOUND_ERROR_CODE = 404;
     public static final String ITEM_EDIT = "EDIT";
+    public static final int UPDATE_PROCESS = 1;
+    public static final int DELETE_PROCESS = 2;
+
+
+    //DATABASE
+    public  static final String DATABASE_NAME = "shopping_db";
+    public  static final int DATABASE_VERSION = 4;
+
 }

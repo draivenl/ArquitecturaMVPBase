@@ -1,5 +1,6 @@
 package co.com.etn.arquitecturamvpbase.view.activity;
 
+import android.content.DialogInterface;
 import android.graphics.Color;
 import android.support.design.widget.TextInputEditText;
 import android.support.v4.content.ContextCompat;
@@ -12,6 +13,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import co.com.etn.arquitecturamvpbase.R;
+import co.com.etn.arquitecturamvpbase.helper.Constants;
 import co.com.etn.arquitecturamvpbase.model.Product;
 import co.com.etn.arquitecturamvpbase.presenter.NewProductPresenter;
 import co.com.etn.arquitecturamvpbase.view.BaseActivity;
@@ -86,6 +88,24 @@ public class NewProductActivity extends BaseActivity<NewProductPresenter> implem
                 }
             }
         });
+
+    }
+
+    @Override
+    public void showValidateInternetWarningDialog() {
+        getShowAlertDialog().showAlertDialog(R.string.warning, R.string.validate_internet_warning_init_offline, true,
+                R.string.accept, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        product.setIsSync("N");
+                        getPresenter().createThreadNewProduct(product, false);
+                    }
+                }, R.string.cancel, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+//                        finish();
+                    }
+                });
 
     }
 

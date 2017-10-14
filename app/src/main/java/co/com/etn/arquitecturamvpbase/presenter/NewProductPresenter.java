@@ -5,6 +5,7 @@ import android.util.Log;
 import java.util.ArrayList;
 
 import co.com.etn.arquitecturamvpbase.R;
+import co.com.etn.arquitecturamvpbase.helper.Database;
 import co.com.etn.arquitecturamvpbase.model.Product;
 import co.com.etn.arquitecturamvpbase.repository.ProductRepository;
 import co.com.etn.arquitecturamvpbase.view.activity.INewProductView;
@@ -27,21 +28,41 @@ public class NewProductPresenter extends BasePresenter<INewProductView> {
 
     public void createNewProduct(Product product) {
         Log.d(TAG, "createNewProduct");
-        createThreadNewProduct(product);
+        if (getValidateInternet().isConnected()) {
+
+            createThreadNewProduct(product, true);
+        } else {
+
+            getView().showValidateInternetWarningDialog();
+        }
 
     }
 
 
-    private void createThreadNewProduct(final Product product) {
+    public void createThreadNewProduct(final Product product, final boolean onLine) {
         Log.d(TAG, "createThreadNewProduct");
         getView().showProgress(R.string.loading_message);
         Thread thread = new Thread(new Runnable() {
             @Override
             public void run() {
-                addProduct(productRepository.addProduct(product));
+                if (onLine) {
+                    addProduct(productRepository.addProduct(product));
+                } else  {
+                    addProductLocal(product);
+                }
             }
         });
         thread.start();
+    }
+
+    private void addProductLocal(Product product) {
+        try{
+            Database.productDao.createProduct(product);
+            getView().onSuccessNewProduct();
+        }catch (Exception ex){
+            getView().showToast(R.string.new_product_error);
+        }
+
     }
 
     private void addProduct(Product product) {
@@ -52,7 +73,7 @@ public class NewProductPresenter extends BasePresenter<INewProductView> {
 
 
         } catch (RetrofitError retrofitError){
-            // TODO: Mostrar RetrofitError
+            getView().showToast(retrofitError.getMessage());
         } finally {
             getView().hideProgress();
         }

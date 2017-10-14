@@ -7,7 +7,7 @@
     <string name="loading_message">Cargando...</string>
     <string name="product_creat">CREAR</string>
     <string name="new_product_ok">Producto Creado...</string>
-    <string name="validate_internet">Error de conexión</string>
+    <string name="validate_internet">Error de conexión. Volver a intentar?</string>
     <string name="success_deleted">Borrado Exitoso</string>
     <string name="error_deleted">Error Borrando. Volver a intentar?</string>
     <string name="error">ERROR!!!</string>
@@ -31,4 +31,11 @@
     <string name="main_product_title">Empanadas</string>
     <string name="main_customers_title">Clientes</string>
     <string name="new_customer_title">Nuevo Cliente</string>
+    <string name="init_process_offline">Se realizará el proceso fuera de línea</string>
+    <string name="warning">Advertencia</string>
+    <string name="validate_internet_warning_init_offline">En el momento no hay servicio de internet, desea realizar el proceso fuera de línea?</string>
+    <string name="product_local_message">Cargar Productos Locales?</string>
+    <string name="product_get_local_error">Error cargando los datos locales</string>
+    <string name="new_product_error">Error creando el producto</string>
+    <string name="product_sync_hint">Sincronizado</string>
 </resources>

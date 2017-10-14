@@ -37,7 +37,7 @@ public class ProductActivity extends BaseActivity<ProductPresenter> implements I
 
         createProgressDialog();
 
-        getPresenter().getListProduct();
+//        getPresenter().getListProduct();
         productList = (ListView) findViewById(R.id.product_listView);
     }
 
@@ -73,15 +73,35 @@ public class ProductActivity extends BaseActivity<ProductPresenter> implements I
                 }, R.string.cancel, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
+                        showAlertDialogLocalProducts();
+//                        finish();
+                    }
+                });
+            }
+        });
+    }
+
+    @Override
+    public void showAlertDialogLocalProducts() {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                getShowAlertDialog().showAlertDialog(R.string.alert, R.string.product_local_message, false, R.string.accept, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        getPresenter().createThreadProduct(false);
+                    }
+                }, R.string.cancel, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
                         finish();
                     }
                 });
             }
         });
-
-
-        // TODO: showAlertDialog
     }
+
+
 
     @Override
     public void showAlertError(int error, int error_retrofit) {

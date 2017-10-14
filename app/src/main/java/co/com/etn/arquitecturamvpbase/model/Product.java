@@ -4,6 +4,7 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
+import java.sql.Timestamp;
 
 /**
  * Created by draiven on 9/16/17.
@@ -30,6 +31,8 @@ public class Product implements Serializable {
     @SerializedName("_id")
     @Expose
     private String id;
+
+    private String isSync;
 
     public String getDescription() {
         return description;
@@ -69,5 +72,13 @@ public class Product implements Serializable {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getIsSync() {
+        return isSync;
+    }
+
+    public void setIsSync(String isSync) {
+        this.isSync = isSync;
     }
 }

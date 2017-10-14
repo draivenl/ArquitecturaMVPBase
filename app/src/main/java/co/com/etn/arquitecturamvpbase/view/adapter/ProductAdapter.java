@@ -4,10 +4,12 @@ import android.app.Activity;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.CheckBox;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -39,6 +41,9 @@ public class ProductAdapter extends ArrayAdapter<Product> {
         this.product = this.productArrayList.get(position);
         loadView(convertView);
         name.setText(product.getName());
+        if ("S".equals(product.getIsSync())) {
+            name.setTextColor(ContextCompat.getColor( convertView.getContext(), R.color.colorPrimaryDark));
+        }
 
         return convertView;
 
@@ -46,6 +51,5 @@ public class ProductAdapter extends ArrayAdapter<Product> {
 
     private void loadView(View convertView) {
         name = (TextView) convertView.findViewById(R.id.item_name_product);
-
     }
 }

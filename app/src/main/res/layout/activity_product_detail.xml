@@ -25,17 +25,17 @@
             >
 
             <ImageView
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:src="@drawable/empanada2"
-                android:layout_weight="2"
+                android:layout_weight="9"
                 />
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
-                android:layout_weight="4"
+                android:layout_weight="1"
                 >
 
                 <android.support.design.widget.FloatingActionButton
@@ -201,7 +201,23 @@
                     android:inputType="number"
 
                     />
+
                 </LinearLayout>
+
+
+                <TextView
+                    android:id="@+id/product_detail_sync"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/product_sync_hint"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+                    android:layout_gravity="center"
+                    android:textStyle="bold"
+
+
+                    />
+
+
 
 
         </LinearLayout>

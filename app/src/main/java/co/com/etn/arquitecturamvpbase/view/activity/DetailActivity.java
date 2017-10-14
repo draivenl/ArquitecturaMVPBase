@@ -6,6 +6,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.text.InputType;
 import android.util.Log;
@@ -32,6 +33,7 @@ public class DetailActivity extends BaseActivity<DetailProductPresenter> impleme
     private TextView descriptionValue;
     private TextView quantityValue;
     private TextView priceValue;
+    private TextView sync;
     private Product product;
 
 
@@ -69,15 +71,17 @@ public class DetailActivity extends BaseActivity<DetailProductPresenter> impleme
     }
 
     private void setDataItem() {
-//        nameValue.setText(product.getName());
-//        descriptionValue.setText(product.getDescription());
-//        quantityValue.setText(product.getQuantity());
-//        priceValue.setText(product.getPrice());
-
         productDetailEditName.setText(product.getName());
         productDetailEditDescription.setText(product.getDescription());
-        productDetailEditPrice.setText(product.getQuantity());
-        productDetailEditQuantity.setText(product.getPrice());
+        productDetailEditPrice.setText(product.getPrice());
+        productDetailEditQuantity.setText(product.getQuantity());
+
+        if ("S".equals(product.getIsSync())) {
+            sync.setVisibility(View.VISIBLE);
+        } else {
+            sync.setVisibility(View.GONE);
+        }
+
     }
 
     private void loadView() {
@@ -95,6 +99,9 @@ public class DetailActivity extends BaseActivity<DetailProductPresenter> impleme
         fabEditProduct = (FloatingActionButton) findViewById(R.id.fabEditProduct);
 
         backgroundOri =  productDetailEditName.getBackground();
+
+        sync = (TextView) findViewById(R.id.product_detail_sync);
+
 
     }
 
@@ -142,6 +149,29 @@ public class DetailActivity extends BaseActivity<DetailProductPresenter> impleme
 
             }
         });
+    }
+
+    @Override
+    public void showValidateInternetWarningDialog(final int process) {
+        getShowAlertDialog().showAlertDialog(R.string.warning, R.string.validate_internet_warning_init_offline, true,
+                R.string.accept, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        if(process == Constants.UPDATE_PROCESS) {
+                            getPresenter().createThreadUpdateProduct(product.getId(), product, false);
+
+                        } else if (process == Constants.DELETE_PROCESS) {
+                            getPresenter().createThreadDeleteProduct(product.getId(), false);
+                        }
+
+                    }
+                }, R.string.cancel, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+//                        finish();
+                    }
+                });
+
     }
 
     public void deleteProduct(View view) {

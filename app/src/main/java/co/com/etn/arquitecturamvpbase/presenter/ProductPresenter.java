@@ -5,6 +5,7 @@ import android.util.Log;
 import java.util.ArrayList;
 
 import co.com.etn.arquitecturamvpbase.R;
+import co.com.etn.arquitecturamvpbase.helper.Database;
 import co.com.etn.arquitecturamvpbase.model.Product;
 import co.com.etn.arquitecturamvpbase.repository.ProductRepository;
 import co.com.etn.arquitecturamvpbase.view.activity.IProductView;
@@ -25,20 +26,25 @@ public class ProductPresenter extends BasePresenter<IProductView> {
 
     public void getListProduct() {
         if (getValidateInternet().isConnected()) {
-            createThreadProduct();
+            createThreadProduct(true);
         } else {
 //            getView().showNotConnected();
             getView().showAlertDialogInternet(R.string.error, R.string.validate_internet);
         }
     }
 
-    private void createThreadProduct() {
+    public void createThreadProduct(final boolean onLine) {
         Log.d(TAG, "createThreadProduct");
         getView().showProgress(R.string.loading_message);
-        Thread thread = new Thread(new Runnable() {
+        final Thread thread = new Thread(new Runnable() {
             @Override
             public void run() {
-                getProductList();
+                if (onLine) {
+                    getProductList();
+                } else {
+                    getProductListLocal();
+                }
+
             }
         });
         thread.start();
@@ -57,5 +63,17 @@ public class ProductPresenter extends BasePresenter<IProductView> {
             getView().hideProgress();
         }
 
+    }
+
+    private void getProductListLocal() {
+        try {
+            ArrayList<Product> productArrayList = Database.productDao.fetchAllProducts();
+            getView().showProductList(productArrayList);
+        }catch (Exception ex) {
+            Log.w("ErrorGetProductList", ex.getMessage());
+            getView().showAlertError(R.string.error, R.string.product_get_local_error);
+        }finally {
+            getView().hideProgress();
+        }
     }
 }

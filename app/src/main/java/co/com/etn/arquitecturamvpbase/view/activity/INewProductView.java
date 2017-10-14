@@ -13,4 +13,5 @@ public interface INewProductView extends IBaseView {
     void setButtonCreateDisabled();
 
     void onSuccessNewProduct();
+    void showValidateInternetWarningDialog();
 }

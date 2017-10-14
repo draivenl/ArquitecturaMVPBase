@@ -39,9 +39,18 @@ public class BaseActivity<T extends BasePresenter> extends AppCompatActivity imp
     }
 
     @Override
-    public void showProgress(int message) {
-        progressDialog.setMessage(getResources().getString(message));
-        progressDialog.show();
+    public void showProgress(final int message) {
+
+
+
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                progressDialog.setMessage(getResources().getString(message));
+                progressDialog.show();
+
+            }
+        });
 
     }
 
@@ -88,4 +97,5 @@ public class BaseActivity<T extends BasePresenter> extends AppCompatActivity imp
     public void createProgressDialog(){
         this.progressDialog = new ProgressDialog(this);
     }
+
 }

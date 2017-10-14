@@ -22,4 +22,6 @@ public class ValidateInternet implements IValidateInternet {
         NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
         return networkInfo != null && networkInfo.isConnectedOrConnecting() && networkInfo.isAvailable() && networkInfo.isConnected();
     }
+
+
 }
