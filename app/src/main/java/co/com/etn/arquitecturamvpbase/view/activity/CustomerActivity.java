@@ -61,7 +61,14 @@ public class CustomerActivity extends BaseActivity<CustomerPresenter> implements
         customersListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
-                Toast.makeText(CustomerActivity.this, (customers.get(position).getPhoneList().get(0)).getNumber(), Toast.LENGTH_LONG).show();
+//                Toast.makeText(CustomerActivity.this, (customers.get(position).getPhoneList().get(0)).getNumber(), Toast.LENGTH_LONG).show();
+                Customer customer = customers.get(position);
+                ArrayList<PhoneList> phoneList = customer.getPhoneList();
+                for (PhoneList phone : phoneList) {
+                    Double[] coordinates = phone.getLocation().getCoordinates();
+                }
+                Intent intent = new Intent(CustomerActivity.this, CustomerLocationsActivity.class);
+                startActivity(intent);
 
             }
         });

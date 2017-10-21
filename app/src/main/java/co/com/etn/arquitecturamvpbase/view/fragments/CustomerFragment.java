@@ -1,5 +1,6 @@
 package co.com.etn.arquitecturamvpbase.view.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -13,11 +14,13 @@ import java.util.ArrayList;
 
 import co.com.etn.arquitecturamvpbase.R;
 import co.com.etn.arquitecturamvpbase.model.Customer;
+import co.com.etn.arquitecturamvpbase.model.PhoneList;
 import co.com.etn.arquitecturamvpbase.presenter.CustomerPresenter;
 import co.com.etn.arquitecturamvpbase.presenter.ProductPresenter;
 import co.com.etn.arquitecturamvpbase.repository.CustomerRepository;
 import co.com.etn.arquitecturamvpbase.view.BaseFragment;
 import co.com.etn.arquitecturamvpbase.view.activity.CustomerActivity;
+import co.com.etn.arquitecturamvpbase.view.activity.CustomerLocationsActivity;
 import co.com.etn.arquitecturamvpbase.view.activity.ICustomerView;
 import co.com.etn.arquitecturamvpbase.view.adapter.CustomerAdapter;
 
@@ -72,7 +75,11 @@ public class CustomerFragment extends BaseFragment<CustomerPresenter> implements
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
                 Toast.makeText(getActivity(), (customers.get(position).getPhoneList().get(0)).getNumber(), Toast.LENGTH_LONG).show();
+                Customer customer = customers.get(position);
 
+                Intent intent = new Intent(adapterView.getContext(), CustomerLocationsActivity.class);
+                intent.putExtra(Customer.class.getName(), customer);
+                startActivity(intent);
             }
         });
     }

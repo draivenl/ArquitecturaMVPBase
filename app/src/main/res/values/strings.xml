@@ -80,5 +80,6 @@
 
 
     </string-array>
+    <string name="title_activity_customer_locations">Map</string>
 
 </resources>

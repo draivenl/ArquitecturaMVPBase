@@ -11,7 +11,7 @@ import java.util.ArrayList;
  */
 
 public class PhoneList implements Serializable {
-    @SerializedName("descripcion")
+    @SerializedName("description")
     @Expose
     private String description;
 
