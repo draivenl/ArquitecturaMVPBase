@@ -28,7 +28,7 @@ public class BaseActivity<T extends BasePresenter> extends AppCompatActivity imp
 
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         validateInternet = new ValidateInternet(BaseActivity.this);
         this.showAlertDialog = new ShowAlertDialog(this);

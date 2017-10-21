@@ -49,7 +49,7 @@ public class DetailActivity extends BaseActivity<DetailProductPresenter> impleme
 
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_product_detail);

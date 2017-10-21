@@ -35,7 +35,7 @@ public class ProductPresenter extends BasePresenter<IProductView> {
 
     public void createThreadProduct(final boolean onLine) {
         Log.d(TAG, "createThreadProduct");
-        getView().showProgress(R.string.loading_message);
+//        getView().showProgress(R.string.loading_message);
         final Thread thread = new Thread(new Runnable() {
             @Override
             public void run() {
@@ -60,7 +60,7 @@ public class ProductPresenter extends BasePresenter<IProductView> {
         } catch (RetrofitError retrofitError){
             getView().showAlertError(R.string.error, R.string.error_retrofit);
         } finally {
-            getView().hideProgress();
+//            getView().hideProgress();
         }
 
     }
@@ -73,7 +73,7 @@ public class ProductPresenter extends BasePresenter<IProductView> {
             Log.w("ErrorGetProductList", ex.getMessage());
             getView().showAlertError(R.string.error, R.string.product_get_local_error);
         }finally {
-            getView().hideProgress();
+//            getView().hideProgress();
         }
     }
 }

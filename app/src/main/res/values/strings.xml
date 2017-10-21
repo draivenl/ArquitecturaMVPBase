@@ -38,4 +38,47 @@
     <string name="product_get_local_error">Error cargando los datos locales</string>
     <string name="new_product_error">Error creando el producto</string>
     <string name="product_sync_hint">Sincronizado</string>
+    <string name="login_edittext_user_hint">Email</string>
+    <string name="login_edittext_password_hint">Password</string>
+    <string name="login_btn_signin_hint">Ingresar</string>
+    <string name="products_tab1_name">Productos</string>
+    <string name="products_tab2_name">Clientes</string>
+    <string name="products_tab3_name">Perfil</string>
+
+
+    <string name="btnName">Enviar a Spinner</string>
+    <string name="btnNameTwo">Enviar A Perfiil</string>
+    <string name="str_show_name">Nombre</string>
+    <string name="txt_v1_relative">Texto1 Relative</string>
+    <string name="hint_relative1">Hint Relative</string>
+    <string name="txtEmailRelative">Email</string>
+    <string name="txtactivity_perfil_username">\@Draiven</string>
+    <string name="activity_perfil_like">1000 Likes</string>
+    <string name="activity_perfil_followers">300 Followers</string>
+    <string name="activity_perfil_following">20 Following</string>
+    <string name="activity_perfil_notifications">Notifications</string>
+    <string name="activity_perfil_sync">Sync With</string>
+    <string name="activity_perfil_btn_name">Close Session</string>
+    <string name="close_session">Cerrar sesión</string>
+
+    <string-array name="animals_array">
+        <item>Leon</item>
+        <item>Burra</item>
+        <item>Tortuga</item>
+        <item>Tiburón</item>
+        <item>Buho</item>
+        <item>Oso</item>
+
+    </string-array>
+
+    <string-array name="sync_with_array">
+        <item>Select...</item>
+        <item>Facebook</item>
+        <item>Git</item>
+        <item>Google</item>
+        <item>Twitter</item>
+
+
+    </string-array>
+
 </resources>

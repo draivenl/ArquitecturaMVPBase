@@ -26,7 +26,7 @@ public class    CustomerAdapter extends ArrayAdapter<Customer> {
     private TextView name;
     private TextView surname;
 
-    public CustomerAdapter(@NonNull CustomerActivity customerActivity, int customer_listView, ArrayList<Customer> customers) {
+    public CustomerAdapter(@NonNull Activity customerActivity, int customer_listView, ArrayList<Customer> customers) {
         super(customerActivity, customer_listView, customers);
         this.context = customerActivity;
         this.customers = customers;

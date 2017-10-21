@@ -39,7 +39,7 @@ public class App extends Application {
         registerReceiver(NETWORK_STATE_RECEIVER, filter);
     }
     public void onNetworkStateChanged(boolean isConnected) {
-        Synchronizer.getInstance().executeSyncLocalToServer(isConnected);
+//        Synchronizer.getInstance().executeSyncLocalToServer(isConnected);
 
     }
 }

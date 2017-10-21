@@ -21,6 +21,8 @@ public class Constants {
 
     //DATABASE
     public  static final String DATABASE_NAME = "shopping_db";
-    public  static final int DATABASE_VERSION = 4;
+    public  static final int DATABASE_VERSION = 5;
 
+    public static final CharSequence EMPTY = "";
+    public static final String MY_PREFERENCES = "preferences";
 }

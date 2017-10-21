@@ -45,6 +45,9 @@ class DatabaseHelper extends SQLiteOpenHelper {
         if (oldVersion == 3) {
             updateProductsToNoSync(sqLiteDatabase);
         }
+        if (oldVersion == 4) {
+            dropTableProductsIfExist(sqLiteDatabase);
+        }
     }
 
     private void addColumnIsSyncToProducts(SQLiteDatabase sqLiteDatabase) {
