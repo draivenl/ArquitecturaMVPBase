@@ -41,6 +41,12 @@ public class CustomerLocationsActivity extends FragmentActivity implements OnMap
 
     private static final String TAG = "CustomerLocations";
     private GoogleMap mMap;
+    int[] COLORS = {
+            R.color.colorPrimary,
+            R.color.colorAccent,
+            R.color.colorPrimaryDark,
+            R.color.colorPrimaryDisabled
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,7 +92,9 @@ public class CustomerLocationsActivity extends FragmentActivity implements OnMap
         getCustomerLocations();
 
 //        createMarkers(coordinatesInit);
+
         changeStateControls();
+
     }
 
     private void createMarkers(Double[] coordinatesInit) {
@@ -125,9 +133,10 @@ public class CustomerLocationsActivity extends FragmentActivity implements OnMap
 
             ArrayList<Polyline> polyLines = new ArrayList<>();
 
+            int indexColor = COLORS.length;
             for (Route route : routes) {
                 PolylineOptions polylineOptions = new PolylineOptions();
-                polylineOptions.color(ContextCompat.getColor(getApplicationContext(), R.color.colorAccent));
+                polylineOptions.color(ContextCompat.getColor(getApplicationContext(), COLORS[indexColor++%COLORS.length]));
                 polylineOptions.width(10);
                 polylineOptions.addAll(route.getPoints());
 
@@ -183,11 +192,28 @@ public class CustomerLocationsActivity extends FragmentActivity implements OnMap
         if (getIntent().getExtras() != null) {
             Customer customer = (Customer) getIntent().getExtras().getSerializable(Customer.class.getName());
             if (customer != null) {
-                Double[] coordinatesInit = customer.getPhoneList().get(0).getLocation().getCoordinates();
-                createMarkers(coordinatesInit);
-                calculateRoutes(customer);
+                ArrayList<LatLng> points = createMarkers(customer);
+                calculateRoutes(points);
+                centerJustPoints(points);
             }
         }
+    }
+
+    private ArrayList<LatLng> createMarkers(Customer customer) {
+        ArrayList<PhoneList> phoneList = customer.getPhoneList();
+        ArrayList<LatLng> points = new ArrayList<>();
+        for (PhoneList phone : phoneList) {
+            Double[] coordinates = phone.getLocation().getCoordinates();
+            LatLng latLng = new LatLng(coordinates[0], coordinates[1]);
+            mMap.addMarker(new MarkerOptions()
+                    .position(latLng).title("Marker in Home")
+                    .icon(bitmapDescriptorFromVector(this, R.drawable.ic_local_bar_black_24dp)));
+            points.add(latLng);
+        }
+
+        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(points.get(0), 18));
+        return points;
+
     }
 
     private void calculateRoutes(Customer customer) {
@@ -209,6 +235,21 @@ public class CustomerLocationsActivity extends FragmentActivity implements OnMap
         routing.execute();
 
         centerJustPoints(points);
+
+    }
+
+    private void calculateRoutes(ArrayList<LatLng> points) {
+        Routing routing = new Routing.Builder()
+                .travelMode(AbstractRouting.TravelMode.DRIVING)
+                .waypoints(points)
+                .key(getString(R.string.google_maps_key))
+                .optimize(true).alternativeRoutes(true)
+                .withListener(routingListener)
+                .build()
+                ;
+        routing.execute();
+
+
 
     }
 
